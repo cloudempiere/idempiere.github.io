@@ -28,3 +28,64 @@
   --ifm-color-primary-lightest: #08acf7;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Image styles - best practices for documentation */
+.markdown img {
+  /* Spacing */
+  display: block;
+  margin: 1.5rem auto;
+  padding: 8px;
+
+  /* Appearance */
+  background: #fff;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+
+  /* Sizing */
+  max-width: 100%;
+  height: auto;
+
+  /* Interaction */
+  cursor: zoom-in;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.markdown img:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .markdown img {
+  background: #1e1e1e;
+  border-color: var(--ifm-color-emphasis-400);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='dark'] .markdown img:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Zoomed image overlay */
+.medium-zoom-overlay {
+  z-index: 999;
+}
+
+.medium-zoom-image--opened {
+  z-index: 1000;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
