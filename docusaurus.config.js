@@ -85,12 +85,8 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: 'Next',
+              label: 'Latest',
               path: '',
-            },
-            '13': {
-              label: '13',
-              banner: 'none',
             },
           },
         },
