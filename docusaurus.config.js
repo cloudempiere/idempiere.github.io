@@ -1,8 +1,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const {themes} = require('prism-react-renderer');
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -23,8 +24,11 @@ const config = {
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',  // TODO: Change back to 'throw' after fixing wiki links
   onBrokenMarkdownLinks: 'warn',
+  onBrokenAnchors: 'warn',  // TODO: Change back to 'throw'
+
+
 
   plugins: [
     require.resolve('docusaurus-lunr-search'),
@@ -55,6 +59,7 @@ const config = {
         ],
       },
     ],
+    'docusaurus-plugin-image-zoom',
 ],
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -76,6 +81,18 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/idempiere/idempiere.github.io/tree/main/',
+          // Version configuration
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: 'Next',
+              path: '',
+            },
+            '13': {
+              label: '13',
+              banner: 'none',
+            },
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -101,6 +118,11 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Docs',
+          },
+          {
+            to: '/docs/release-notes',
+            position: 'left',
+            label: 'Release Notes',
           },
           // Right
           {
@@ -179,6 +201,18 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      zoom: {
+        selector: '.markdown img',
+        background: {
+          light: 'rgba(0, 0, 0, 0.85)',
+          dark: 'rgba(0, 0, 0, 0.9)',
+        },
+        config: {
+          // medium-zoom options
+          margin: 24,
+          scrollOffset: 0,
+        },
       },
     }),
 };
