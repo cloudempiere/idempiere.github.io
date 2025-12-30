@@ -1,0 +1,8 @@
+{
+  "label": "Sponsors",
+  "position": 99,
+  "link": {
+    "type": "generated-index",
+    "description": "Organizations that have sponsored iDempiere feature development."
+  }
+}
