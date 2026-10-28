@@ -1,0 +1,11 @@
+# Add User Session Process Instance
+
+> Add session reference on process instance to analyze/audit process and users action sequence from process audit.
+
+**Goal:** Functional
+
+**Developer:** Deepak Pansheriya
+
+**Feature** **Ticket:** [IDEMPIERE-5371](https://idempiere.atlassian.net/browse/IDEMPIERE-5371)
+
+### Description
