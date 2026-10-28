@@ -55,6 +55,7 @@ The Java version of the target is in the **Platform changes** box.
 - [ ] Every bundle compiles against the target version without errors. This is the real check for removed and moved APIs; fix every error before you continue.
 - [ ] Deprecation warnings raised by the target version are listed, and those marked `forRemoval` have an owner.
 - [ ] For each note ticked in **Before you upgrade**, the repository was searched for the class, method, column or setting it names.
+- [ ] Every `Env.parseContext` call was checked against where its result goes. Since iDempiere 12 the overloads without a `forSQL` argument escape quotes (`forSQL` is `true`), which is right for SQL. When the result is text, such as a message, a field value or a file name, call the overload with `forSQL` set to `false`, or every quote in the text comes out doubled. See [New Env.parseContext parameter](../../migration-notes/v12/technical-notes.md#new-envparsecontext-parameter).
 
 Search commands for patterns that compile but fail at runtime, run in the root of the repository:
 
@@ -67,6 +68,9 @@ git grep -nE 'jre\.compilation\.profile|<(maven\.compiler\.(release|source|targe
 
 # Local repository paths
 git grep -n 'file:/' -- '*pom.xml'
+
+# Env.parseContext calls: SQL keeps the default, text needs forSQL=false
+git grep -n 'Env.parseContext(' -- '*.java'
 ```
 
 ## Database and migration scripts
