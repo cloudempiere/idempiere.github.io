@@ -7,6 +7,8 @@ const JIRA_BROWSE = 'https://idempiere.atlassian.net/browse/';
 
 const REQUIREMENT_LABELS = {
   java: 'Java',
+  tycho: 'Tycho',
+  maven: 'Maven',
   zk: 'ZK',
   jetty: 'Jetty',
   postgresql: 'PostgreSQL',

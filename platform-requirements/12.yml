@@ -9,3 +9,9 @@ requirements:
   jetty:
     value: "12.0 (ee8)"
     source: https://idempiere.atlassian.net/browse/IDEMPIERE-6088
+  tycho:
+    value: "4.0.8"
+    source: https://github.com/idempiere/idempiere/blob/release-12/org.idempiere.parent/pom.xml
+  maven:
+    value: "3.9.10 (Maven Wrapper)"
+    source: https://github.com/idempiere/idempiere/blob/release-12/.mvn/wrapper/maven-wrapper.properties

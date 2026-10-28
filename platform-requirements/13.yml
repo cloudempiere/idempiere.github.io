@@ -9,3 +9,9 @@ requirements:
   postgresql:
     value: "13 or newer (11 and 12 need the pgcrypto extension)"
     source: https://github.com/idempiere/idempiere.github.io/blob/main/docs/migration-notes/v13/technical-notes.md
+  tycho:
+    value: "4.0.8"
+    source: https://github.com/idempiere/idempiere/blob/release-13/org.idempiere.parent/pom.xml
+  maven:
+    value: "3.9.10 (Maven Wrapper)"
+    source: https://github.com/idempiere/idempiere/blob/release-13/.mvn/wrapper/maven-wrapper.properties

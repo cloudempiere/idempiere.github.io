@@ -16,6 +16,8 @@
       "minProperties": 1,
       "properties": {
         "java": { "$ref": "#/definitions/requirement" },
+        "tycho": { "$ref": "#/definitions/requirement" },
+        "maven": { "$ref": "#/definitions/requirement" },
         "zk": { "$ref": "#/definitions/requirement" },
         "jetty": { "$ref": "#/definitions/requirement" },
         "postgresql": { "$ref": "#/definitions/requirement" },
