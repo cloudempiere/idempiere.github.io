@@ -27,8 +27,28 @@ requirements:
 | Field | Required | Meaning |
 |---|---|---|
 | `version` | Yes | The release, as a quoted string. It matches the `v<version>` folder names in the docs. |
-| `requirements` | Yes | At least one of `java`, `zk`, `jetty`, `postgresql`, `oracle`. |
+| `requirements` | Yes | At least one of `java`, `tycho`, `maven`, `zk`, `jetty`, `postgresql`, `oracle`. |
 | `requirements.<name>.value` | Yes | The version, as text. It can include a short note. |
 | `requirements.<name>.source` | Yes | A link to where the value is stated: a `pom.xml` on the release branch, a Jira ticket or a docs page. |
 
 A value carries forward to later releases until a later file changes it. Only add a value when you have a source for it.
+
+## Values read from the code
+
+Do not edit `java`, `zk`, `tycho` and `maven` by hand. `scripts/sync-platform-requirements.js` reads them from the iDempiere source of each release (branch `release-<version>`, or `master` before the release branch exists):
+
+| Field | Read from |
+|---|---|
+| `java` | `org.idempiere.parent/pom.xml`, `<jdk.version>` |
+| `zk` | `org.idempiere.parent/pom.xml`, `<zk.version>` |
+| `tycho` | `org.idempiere.parent/pom.xml`, `<tycho.version>` |
+| `maven` | `.mvn/wrapper/maven-wrapper.properties`, the Maven distribution version |
+
+```shell
+npm run sync:platform            # update the files
+npm run sync:platform -- --check # list differences, exit 1 if there are any
+```
+
+The same script writes [`docs/migration-notes/platform-requirements.md`](../docs/migration-notes/platform-requirements.md), a table of every release, so the values are also in `llms.txt`, `llms-full.txt` and the Markdown copy of the page. Do not edit that page by hand.
+
+The [Sync platform requirements](../.github/workflows/platform-requirements.yml) workflow runs it every week and opens a pull request when the source changed. `jetty`, `postgresql` and `oracle` are not in the code in a readable form: keep writing them by hand, with a source link.

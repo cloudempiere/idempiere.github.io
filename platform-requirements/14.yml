@@ -6,3 +6,9 @@ requirements:
   zk:
     value: "10.3.0.1"
     source: https://github.com/idempiere/idempiere/blob/master/org.idempiere.parent/pom.xml
+  tycho:
+    value: "4.0.8"
+    source: https://github.com/idempiere/idempiere/blob/master/org.idempiere.parent/pom.xml
+  maven:
+    value: "3.9.10 (Maven Wrapper)"
+    source: https://github.com/idempiere/idempiere/blob/master/.mvn/wrapper/maven-wrapper.properties

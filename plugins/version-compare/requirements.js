@@ -1,5 +1,5 @@
-// Loads platform-requirements/<version>.yml: the Java, ZK, Jetty and database
-// versions each release needs. Each file is validated against
+// Loads platform-requirements/<version>.yml: the Java, Tycho, Maven, ZK, Jetty
+// and database versions each release needs. Each file is validated against
 // platform-requirements/_schema.json and the build fails with the file name
 // and the failing path when it doesn't match.
 

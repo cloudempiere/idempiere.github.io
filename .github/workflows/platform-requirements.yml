@@ -1,0 +1,52 @@
+name: Sync platform requirements
+
+# Reads the Java, ZK, Tycho and Maven versions of every release from the
+# iDempiere source (scripts/sync-platform-requirements.js) and opens a pull
+# request when platform-requirements/ or the generated page
+# docs/migration-notes/platform-requirements.md no longer matches. Nothing is pushed to
+# main without review.
+
+on:
+  schedule:
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Sync from the iDempiere source
+        id: sync
+        run: |
+          {
+            echo 'changes<<EOF'
+            npm run --silent sync:platform
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/sync-platform-requirements
+          add-paths: |
+            platform-requirements/*.yml
+            docs/migration-notes/platform-requirements.md
+          commit-message: 'chore(platform-requirements): sync with the iDempiere source'
+          title: 'Sync platform requirements with the iDempiere source'
+          body: |
+            `scripts/sync-platform-requirements.js` found values that differ from the iDempiere source:
+
+            ```
+            ${{ steps.sync.outputs.changes }}
+            ```
+
+            Check the new values on the [Compare versions](https://docs.idempiere.org/upgrade/compare) preview before merging.
+          delete-branch: true
